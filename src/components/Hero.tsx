@@ -11,12 +11,12 @@ const ease = [0.22, 1, 0.36, 1] as const;
 function BigWord({ word, delay, className = "" }: { word: string; delay: number; className?: string }) {
   const ready = useReady();
   return (
-    <span className={`flex overflow-hidden ${className}`} aria-hidden>
+    <span className={`-mx-[0.05em] -my-[0.08em] flex overflow-hidden px-[0.05em] py-[0.08em] ${className}`} aria-hidden>
       {Array.from(word).map((c, i) => (
         <motion.span
           key={i}
           className="inline-block"
-          initial={{ y: "105%", rotate: 8 }}
+          initial={{ y: "130%", rotate: 8 }}
           animate={ready ? { y: "0%", rotate: 0 } : undefined}
           transition={{ duration: 1.1, ease, delay: delay + i * 0.045 }}
         >

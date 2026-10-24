@@ -30,10 +30,16 @@ export function RevealText({
   return (
     <span ref={ref} className={className} aria-label={text}>
       {parts.map((p, i) => (
-        <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.08em] align-bottom">
+        // La máscara se agranda con padding y lo compensa con margen negativo:
+        // así no recorta descendentes (q, y) ni el vuelo de las cursivas, y el diseño no se mueve.
+        <span
+          key={i}
+          aria-hidden
+          className="-mx-[0.1em] -mb-[0.25em] -mt-[0.12em] inline-block overflow-hidden px-[0.1em] pb-[0.25em] pt-[0.12em] align-bottom"
+        >
           <motion.span
             className="inline-block"
-            initial={{ y: "110%" }}
+            initial={{ y: "160%" }}
             animate={inView ? { y: "0%" } : undefined}
             transition={{ duration: 0.9, ease: EASE, delay: delay + i * (by === "word" ? 0.05 : 0.025) }}
           >
