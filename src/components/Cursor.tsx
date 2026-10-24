@@ -34,7 +34,7 @@ export default function Cursor() {
     };
   }, [x, y]);
 
-  const size = label ? 96 : hoverLink ? 44 : 12;
+  const size = label ? 96 : hoverLink ? 52 : 34;
 
   return (
     <div className="cursor-root pointer-events-none fixed inset-0 z-[90]" aria-hidden>
@@ -44,8 +44,9 @@ export default function Cursor() {
         animate={{
           width: size,
           height: size,
-          backgroundColor: label ? "var(--red)" : hoverLink ? "rgba(245,243,238,0)" : "var(--cream)",
-          borderWidth: hoverLink && !label ? 1 : 0,
+          backgroundColor: label ? "var(--red)" : "rgba(245,243,238,0)",
+          borderWidth: label ? 0 : 1,
+          opacity: label || hoverLink ? 1 : 0.5,
         }}
         transition={{ type: "spring", stiffness: 300, damping: 26 }}
       >
@@ -59,8 +60,7 @@ export default function Cursor() {
           </motion.span>
         )}
       </motion.div>
-      <style>{`.cursor-root > div { border-color: var(--cream); border-style: solid; }
-      @media (hover: hover) { html, a, button { cursor: none; } }`}</style>
+      <style>{`.cursor-root > div { border-color: var(--cream); border-style: solid; }`}</style>
     </div>
   );
 }
